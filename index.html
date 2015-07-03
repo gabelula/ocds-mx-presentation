@@ -214,34 +214,116 @@
         "endDate": 2015-03-09
     },
     "numberOfTenderers": 3,
+    "tenderers" : []
+...
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h1>Licitación</h1>
+					<h3></h3>
+					<pre><code>...
     "tenderers" : [
-    	{
-    		"identifier": "No incluido.",
-    		"additionalIdentifier": null,
-    		"name": "P & C LIMPIEZA, S.A. DE C.V.",
-    		"address": null,
-    		"contactPoint": null
-    		},
+      {
+          "identifier": "Identificador del proveedor/organización.",
+    	    "additionalIdentifier": "Identificadores adicionales. Por ejemplo, razón social.",
+    	    "name": "P & C LIMPIEZA, S.A. DE C.V.",
+    	    "address": {
+			        "streetAddress": "String, null",
+					    "locality": "String, null",
+					    "region": "String, null",
+					    "postalCode": "String, null",
+					    "countryName": "String, null"
+			    },
+    	    "contactPoint": {
+				        "name": "String, null",
+				        "email": "String, null",
+				        "telephone": "String, null",
+				        "faxNumber": "String, null",
+				        "url": "uri"
+			    }
+    	},
     ...
-    	],
+    ],
+...
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h1>Licitación</h1>
+					<h3></h3>
+					<pre><code>...
     "procuringEntity": {
-    		"name": "Unidad Administrativa Resposable de la ejecucion"
+    		"name": "Unidad Administrativa Responsable de la ejecucion (Dirección General de Informática)"
     	},
     "documents": "Documentos relacionados. Array[Documento]",
-    "milestones": [],
-    "amendment": ""
+    "milestones": [ "Hitos asociados con el llamado a licitación." ],
+    "amendment": "Modificaciones a la licitación."
 }
 					</code></pre>
 					<aside class="notes">
 					</aside>
 				</section>
 
+				<section>
+					<h1>Licitación</h1>
+					<h3>Comprador</h3>
+					<pre><code data-trim>
+"buyer": {
+    "identifier": "Identificador de organización de cuyo presupuesto sale la compra.",
+    "additionalIdentifier": "Identificador adicional",
+    "name": "Unidad Administrativa Solicitante",
+    "address": "Direccion",
+    "contactPoint": "Persona de contacto."
+}
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
 
 				<section>
 					<h1>Adjudicación</h1>
 					<h3></h3>
-					<p>
-					</p>
+					<pre><code>
+						"awards": [
+	{
+		"id": "1" ,
+		"title": "No incluido.",
+		"description": null,
+		"status": "active",
+		"date": "2015-03-24",
+		"value": "15232482",
+		"suppliers": [
+			{
+				"identifier": "No incluido.",
+				"additionalIdentifier": null,
+				"name": "FUMIGACIONES Y LIMPIEZA INTEGRAL S.A. DE C.V.",
+				"address": null,
+				"contactPoint": null
+			}
+		] ,
+		"items": [] ,
+		"documents": [
+			{
+				"id": "1",
+				"documentType": "notice" ,
+				"title": "Licitación Publica Nacional. Numero LPN/GDF/CJSL/DEA/SRM/01/15 'Servicio de Limpieza'. Acto de Fallo",
+				"description": null,
+				"url": "http://www.consejeria.df.gob.mx/images/transparencia/1er_trimestre_2015/art_14/frac_XXVII/LPN_01_acta_fallo.pdf",
+				"datePublished": "",
+				"dateModified": "",
+				"format": "PDF",
+				"language": "es"
+			}
+		],
+		"amendment": null
+	}
+]
+					</code></pre>
 					<aside class="notes">
 					</aside>
 				</section>
