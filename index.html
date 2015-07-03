@@ -52,27 +52,71 @@
 				</section>
 
 				<section>
+					<h1>Overview - TO DO</h1>
+					<h3></h3>
+					<p>
+					</p>
+					<aside class="notes">
+						. overview of the standard
+						. json <--> xls
+						. extensions
+					</aside>
+				</section>
+
+				<section>
+					<h1>Release Package - TO DO</h1>
+					<h3>Archivo con varios releases juntos.</h3>
+					<ul>
+						<li>Un release es un archivo de publicación sobre un proceso de contratación.</li>
+						<li>Es deseable que se publique lo más frecuente como sea posible.</li>
+						<li>Release package es un conjunto de releases.</li>
+						<li>En MX, se puede publicar releases una vez por mes y un release package una vez por trimestre.</li>
+					</ul>
+					<aside class="notes">
+						. Un release es un archivo de publicación sobre un proceso de contratación. Puede ser en la etapa de planificación, llamado a licitación, contratación o ejecución.
+						. Practicas de publicación
+							. publicar tan frecuente como sea posible
+						. en el caso mexicano
+							. liberar releases una vez por mes
+							. liberar un release package una vez por trimestre
+						. pregunta
+						  . como piensan manejar el API?
+							. y la publicación de archivos json?
+						. API --- LOOK AT THIS MORE FOR RECOMMENDATIONS
+						  . restful
+							. '/release/{release-id}'
+					</aside>
+				</section>
+
+				<section>
 					<h1>Release Package</h1>
 					<h3>Archivo con varios releases juntos.</h3>
 					<pre><code data-trim>
-						{
-					    "uri": "URI donde se publica",
-					    "publishedDate": "2015-04-15",
-					    "publisher": {
-					        "scheme": "scheme que contiene los identificadores. URI",
-					        "name": "CDMX-SEFINANZAS. String. Requerido",
-					        "uri": "https://www.df.gob.mx/",
-					        "uid": "el id para este publisher. String, Null"
-					    },
-							"releases": [],
-							"license": "uri",
-							"publicationPolicy": "uri"
-						}
+{
+  "uri": "URI donde se publica. URI String.",
+  "publishedDate": "2015-04-15",
+  "publisher": {
+      "scheme": "Esquema que contiene los identificadores. URI",
+      "name": "CDMX-SEFINANZAS. String",
+      "uri": "https://www.df.gob.mx/",
+      "uid": "El id para este publisher. String, Null"
+  },
+  "releases": [],
+  "license": "URI String",
+  "publicationPolicy": "URI String"
+}
 					</code></pre>
 					<aside class="notes">
-						. que es un release. Estos se pueden estar liberando mas periodicamente.
-						. cada cuanto se libera release packages
-						. consejos en API
+						. Requeridos, uri, publishedDate, releases, publisher y publisher name
+						. Sobre Licencias. Publicar datos de contratación con licencias libres es muy importante en el proceso de contratación abierta. La licencia especifica como los usuarios pueden acceder, usar y re-usar los datos.
+						.. dominio publico
+						.. por atribución (uso y reuso atribuyendo la fuente)
+						.. si se usan licencias propias, confirmar que sean compatibles con la definición de licencia libre. http://opendefinition.org/licenses/
+						. Sobre politicas de publicación. Información sobre porque se publican estos datos y no otros. Que campos se excluyen por temas de privacidad u otros.
+						.. quien es responsable por la publicación de estos datos. Información de contacto.
+						.. como son los datos generados y que tan frecuentemente. Información de los sistemas que se utilizan.
+						.. información sobre códigos que se utilizen
+						.. Planes futuros de desarrollo
 					</aside>
 				</section>
 
@@ -86,6 +130,7 @@
 		"date": "2015-04-15",
 		"tag": "contract",
 		"initiationType": "tender",
+		"planning": {},
 		"tender": {},
 		"buyer": {},
 		"awards": [],
@@ -94,16 +139,34 @@
 }
 					</code></pre>
 					<aside class="notes">
-						. ocid - identificadore y como crearlos
+						. ocid - identificador global para el proceso de contratación. Para Mexico OCDS-87SD3T-{identificador-local}
+						.. pregunta: como pueden crear los identificadores OCID?
 						. campo id
 						. tag -> planning tender tenderAmendment tenderUpdate tenderCancellation award awardUpdate awardCancellation contract contractUpdate contractAmendment implementation implementationUpdate contractTermination compiled
-						. initiationType
+						. initiationType: siempre 'tender'
 					</aside>
 				</section>
 
 				<section>
+					<h1>Identificadores - TODO</h1>
+					<h3>pegamento del proceso de contratación</h3>
+					<p>
+						OCID es un identificador global que está hecho de cuatro partes. Los primeros tres pueden ser valores fijos en el sistema.
+						<ul>
+							<li>Prefijo 'OCDS'</li>
+							<li>Separador '-'</li>
+							<li>Prefijo registrado que para ciudad de mexico es '87sd3t'</li>
+							<li>Separador '-'</li>
+							<li>Un nombre para el organismo que publica. En el caso de secretaria de finanzas podria ser 'SEFIN' o parcido.</li>
+							<li>Separador '-'</li>
+							<li>Un identificador interno que se crea en el sistema usado.</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
 					<h1>Planificación</h1>
-					<h3></h3>
+					<h3>planning</h3>
 					<pre><code data-trim>
 {
    "budget": {
@@ -124,7 +187,33 @@
 					</code></pre>
 					<aside class="notes">
 						. cuales son los campos basicos?
+						  .. tener por lo menos un documento de planificación es básico.
+						. intermediarios?
+						  .. el monto del presupuesto (amount)
+						. avanzado?
+								.. enlace al proyecto
 					</aside>
+				</section>
+
+
+				<section>
+					<h1>Licitación</h1>
+					<h3>tender</h3>
+					<pre><code data-trim>
+{
+		"ocid": "OCDS-87SD3T-SEFIN-0001-15",
+		"id": "1",
+		"date": "2015-04-15",
+		"tag": "contract",
+		"initiationType": "tender",
+		"planning": {},
+		"tender": {},
+		"buyer": {},
+		"awards": [],
+		"contracts": [],
+		"language": "es"
+}
+					</code></pre>
 				</section>
 
 				<section>
@@ -133,14 +222,22 @@
 					<pre><code>
 {
 	"id": "LPN/GDF/CJSL/DEA/SRM/01/15",
-	"title": "CONTRATACIÓN DEL SERVICIO DE LIMPIEZA ...",
-	"description": "CONTRATACIÓN DEL SERVICIO DE LIMPIEZA ...",
+	"title": "Contratación del servicio de limpieza.",
+	"description": "Contratación del servicio de limpieza ...",
 	"status": "complete",
 	"items": [ ]
 	...
 					</code></pre>
 					<aside class="notes">
+						. id
+						  .. Número de expediente
+							.. Tienen que ser consistentes en todo el sistema
+						. title
+						  .. Descripcion de las obras públicas, los bienes o servicios contratados
+							.. Desde el punto de vista de la experiencia de usuario los titulos son muy importantes
+							.. Deberian ser 10 palabras o menos
 						. cuales son los campos basicos?
+						.. ID Requerido
 					</aside>
 				</section>
 
@@ -174,6 +271,8 @@
 					</code></pre>
 					<aside class="notes">
 						. cuales son los campos basicos?
+						... items quantity
+						... items description
 					</aside>
 				</section>
 
@@ -191,16 +290,23 @@
       "currency": "MXN"},
 	"procurementMethod": "open",
 	"awardCriteria": "lowestCost",
-	"awardCriteriaDetails": "CON FUNDAMENTO EN EL ARTICULO 43 FRACCIÓN II DE LA LADF...",
+	"awardCriteriaDetails": "Con fundamento en el articulo 43 fracción II de la LADF...",
 	"submissionMethod": "Como se aplica para la licitación? ElectronicAuction, ElectronicSubmission, Written, inPerson",
 	"submissionMethodDetails": "Detalles de como aplicar",
 	"tenderPeriod": {
-      "startDate": "Fecha de la Convocatoria o Invitacion",
-      "endDate": "Fecha de la Convocatoria o Invitacion"
+      "startDate": "Fecha en que licitación fue anunciada. Sólo tenemos periodo de aplicación.",
+      "endDate": "Último día para aplicar. Fecha de la Convocatoria o Invitacion"
   },
 ...
 					</code></pre>
 					<aside class="notes">
+						. tenderPeriod
+						  .. Tenemos el campo 'Fecha de la Convocatoria o Invitacion' que tiene un rango de fechas en el que se puede aplicar.
+							.. No tenemos fecha en que el llamado a licitación es anunciado.
+						. campos basicos?
+						  .. procurementMethod
+					   	.. tenderPeriod
+						  .. enlace a documento oficial con el llamado
 					</aside>
 				</section>
 
@@ -210,14 +316,19 @@
 					<pre><code>
 ...
     "awardPeriod": {
-        "startDate": "2015-03-09",
-        "endDate": 2015-03-09
+        "startDate": "date",
+        "endDate": "date"
     },
     "numberOfTenderers": 3,
     "tenderers" : []
 ...
 					</code></pre>
 					<aside class="notes">
+						. awardPeriod
+						  .. es el periodo de contratación (que puede cambiar cuando efectivamente se firme el contrato)
+						. campos básicos
+						  .. awardPeriod
+						  .. tenderers
 					</aside>
 				</section>
 
@@ -225,8 +336,8 @@
 					<h1>Licitación</h1>
 					<h3></h3>
 					<pre><code>...
-    "tenderers" : [
-      {
+"tenderers" : [
+    {
           "identifier": "Identificador del proveedor/organización.",
     	    "additionalIdentifier": "Identificadores adicionales. Por ejemplo, razón social.",
     	    "name": "P & C LIMPIEZA, S.A. DE C.V.",
@@ -244,12 +355,20 @@
 				        "faxNumber": "String, null",
 				        "url": "uri"
 			    }
-    	},
+    },
     ...
-    ],
+],
 ...
 					</code></pre>
 					<aside class="notes">
+						. proveedores
+							.. hay un dataset de proveedores para cada dependencia
+							.. el identificador es para el proveedor en un data set único para todo el gobierno. Es importante que sea un identificador legal de un registro de empresas del gobierno. (SEIM?)
+							.. todos los datos que necesitamos estan en el dataset de proveedores. Sólo que no tienen buenos identificadors para atarlos al proceso de contratación.
+							.. si no se puede publicar id de la empresa entonces publicar la mayor cantidad posible de las empresas registradas con la dependencia.
+						. campo servidores publicos en los datos
+						  .. qué es ese campo?
+							.. se puede extender el estandar para guardar estos datos
 					</aside>
 				</section>
 
@@ -266,6 +385,9 @@
 }
 					</code></pre>
 					<aside class="notes">
+						. use a different scheme for gov organizations (identifiers are different)
+						. only documents related with the tender
+						. FIELDS FOR AMENDMENTS AND EXAMLE OF MX DATA THAT HAVE IT
 					</aside>
 				</section>
 
@@ -282,70 +404,247 @@
 }
 					</code></pre>
 					<aside class="notes">
+						. campos básicos
+						  .. nombre y dirección para buyer
+					</aside>
+				</section>
+
+
+				<section>
+					<h1>Releases</h1>
+					<h3>awards</h3>
+					<pre><code data-trim>
+{
+		"ocid": "OCDS-87SD3T-SEFIN-0001-15",
+		"id": "1",
+		"date": "2015-04-15",
+		"tag": "contract",
+		"initiationType": "tender",
+		"planning": {},
+		"tender": {},
+		"buyer": {},
+		"awards": [],
+		"contracts": [],
+		"language": "es"
+}
+					</code></pre>
+					<aside class="notes">
+						. ahora vamos a pasar a awards (adjudicaciones)
 					</aside>
 				</section>
 
 				<section>
-					<h1>Adjudicación</h1>
-					<h3></h3>
+					<h1>Adjudicaciones</h1>
+					<h3>awards</h3>
 					<pre><code>
-						"awards": [
-	{
-		"id": "1" ,
-		"title": "No incluido.",
-		"description": null,
-		"status": "active",
-		"date": "2015-03-24",
-		"value": "15232482",
-		"suppliers": [
-			{
-				"identifier": "No incluido.",
-				"additionalIdentifier": null,
-				"name": "FUMIGACIONES Y LIMPIEZA INTEGRAL S.A. DE C.V.",
-				"address": null,
-				"contactPoint": null
-			}
-		] ,
-		"items": [] ,
-		"documents": [
-			{
-				"id": "1",
-				"documentType": "notice" ,
-				"title": "Licitación Publica Nacional. Numero LPN/GDF/CJSL/DEA/SRM/01/15 'Servicio de Limpieza'. Acto de Fallo",
-				"description": null,
-				"url": "http://www.consejeria.df.gob.mx/images/transparencia/1er_trimestre_2015/art_14/frac_XXVII/LPN_01_acta_fallo.pdf",
-				"datePublished": "",
-				"dateModified": "",
-				"format": "PDF",
-				"language": "es"
-			}
-		],
-		"amendment": null
-	}
+"awards": [
+    {
+        "id": "1" ,
+        "title": "No incluido.",
+        "description": null,
+        "status": "active",
+        "date": "2015-03-24",
+        "value": {
+					  "value": "15232482",
+						"amount": "MXN"
+				}
+        "suppliers": [
+            {
+                "identifier": "No incluido.",
+                "additionalIdentifier": null,
+                "name": "FUMIGACIONES Y LIMPIEZA INTEGRAL S.A. DE C.V.",
+                "address": null,
+                "contactPoint": null
+			      }
+		    ],
+				...
+    }
 ]
 					</code></pre>
 					<aside class="notes">
+						. value
+						  .. los montos estan tódos saliendo del mismo lado en la hoja de calculo
+							.. Monto del Contrato con impuestos incluídos
+							.. los montos tienen que salir de lugares diferentes para tender (minValue y Value), awards y contract
+					  . campos básicos
+						  .. value
+							.. date
+							.. suppliers (name, address)
+							.. items (quantities, description)
+					</aside>
+				</section>
+
+				<section>
+					<h1>Adjudicaciones</h1>
+					<h3>awards</h3>
+					<pre><code>
+"awards": [
+        ...,
+		    "items": [] ,
+		    "documents": [
+		        {
+		            "id": "1",
+		            "documentType": "notice" ,
+		            "title": "Licitación Publica Nacional. Numero LPN/GDF/CJSL/DEA/SRM/01/15 'Servicio de Limpieza'. Acto de Fallo",
+		            "description": null,
+		            "url": "http://www.consejeria.df.gob.mx/images/transparencia/1er_trimestre_2015/art_14/frac_XXVII/LPN_01_acta_fallo.pdf",
+		            "datePublished": "",
+		            "dateModified": "",
+		            "format": "PDF",
+		            "language": "es"
+		       }
+		    ],
+		    "amendment": {
+						    "date": "Fecha del cambio",
+                "changes": [
+								    "property": "Campo que cambio",
+										"former_value": "Valor anterior"
+								],
+                "rationale": "Motivo del cambio."
+				}
+    }
+]
+					</code></pre>
+					<aside class="notes">
+						. amendment
+							.. tenemos varios campos con datos sobre convenios modificatorios y enlaces a documentos.
+							.. Número del Convenio Modificatorio (Hipervínculo al convenio modificatorio)
+							.. Objeto del Convenio Modificatorio
+							.. Fecha de Firma del Convenio Modificatorio
+					  . campos básicos
+						  .. value
+							.. date
+							.. suppliers (name, address)
+							.. items (quantities, description)
 					</aside>
 				</section>
 
 				<section>
 					<h1>Contrato</h1>
-					<h3></h3>
-					<p>
-					</p>
+					<h3>contracts</h3>
+					<pre><code>
+"contracts": [
+    {
+        "id": "CS-039/2013",
+        "awardID": "1",
+        "title": "Contrato multianual de servicio de consultoría",
+        "description": "Contrato multianual de servicio de consultoria y mantenimiento continuo para la o operacion del sistema informatico de planeacion de recursos gubernamentales (GRP-SAP) 2013-2015.",
+        "status": "terminated",
+        "period": {
+		        "startDate": "2013-03-16",
+		        "endDate": "2015-06-30"
+        },
+        "value": {
+				    "amount": "41000000",
+				    "currency": "MXN"
+				},
+				...
+					</code></pre>
 					<aside class="notes">
+						. id
+						  .. En XLS publicado Numero del Contrato (Hipervínculo al documento del contrato)
+					  . title
+						  .. Lo mismo que para el resto de los titulos. Cortos y descriptivos.
+						. period
+						  .. "Ejecucion de los Servicios Contratados u obra publica a realizar – Fecha de Inicio"	Y "Ejecucion de los Servicios Contratados u obra publica a realizar – Fecha de Término"
 					</aside>
 				</section>
 
 				<section>
-					<h1>Ejecución</h1>
-					<h3></h3>
-					<p>
-					</p>
+					<h1>Contrato</h1>
+					<h3>contracts</h3>
+					<pre><code>
+"contracts": [
+    {
+        ...
+        "items": [],
+        "dateSigned": "2013-03-15",
+        "documents": [
+        {
+            "id": "1",
+            "documentType": "contractSigned" ,
+            "title": "Contrato multianual de prestación de servicio de consultoria.",
+            "description": "Contrato multianual de prestación de servicio de consultoria y mantenimiento continuo para la operacion del sistema informatico de planeación de recursos gubernamentales SAP-GRP.",
+            "url": "http://www.finanzas.df.gob.mx/transparencia/14/XXVII/adjudicaciones/2015/contrato_cs_039_2013.pdf",
+            "datePublished": "",
+            "dateModified": "",
+            "format": "PDF",
+            "language": "es"
+		    },
+		    {
+            "id": "2",
+            "documentType": "financialProgressReport" ,
+            "title": "Reporte de avance fisico financiero.",
+            "description": "Reporte de avance fisico financiero.",
+            "url": "http://www.finanzas.df.gob.mx/transparencia/14/XXVII/adjudicaciones/2015/avance_cs_039_2013.pdf",
+            "datePublished": "",
+            "dateModified": "",
+            "format": "PDF",
+            "language": "es"
+		    }
+		    ],
+        "amendment": {
+            "date": "date-time",
+            "changes": [{"property", "former_value"}],
+            "rationale": "string, null"
+        },
+        "implementation": {
+            "transactions": ["Transaction Information"],
+            "milestones": ["Milestonrs"],
+            "documents": ["Documents"]
+        }
+    }
+]
+					</code></pre>
 					<aside class="notes">
+						. dateSigned
+						  .. Fecha del Contrato
+						. implementation
+							.. Si el sistema que tengan en el futuro les permite hacer seguimento de todo el proceso de contratación, entonces van a poder publicar estos datos.
 					</aside>
 				</section>
 
+				<section>
+					<h1>Listas de Códigos</h1>
+					<h3>abiertas y cerradas</h3>
+					<p>
+						Listá de códigos abierta: son códigos sugeridos y las listas se pueden extender para agregar los códigos necesarios.
+						<ul>
+							<li>Tipos de documentos</li>
+							<li>Esquemas de organizaciones</li>
+							<li>Criterios de adjudicación</li>
+							<li>Metodos de aplicación a un llamado de licitación</li>
+						</ul>
+					</p>
+					<p>
+						Listá de códigos cerrada: son códigos que obligatoriamente no se pueden cambiar.
+						<ul>
+							<li>Tags para Release</li>
+							<li>Tipo de iniciación de un proceso de contratación</li>
+							<li>Estado de la licitación</li>
+							<li>Metodos de procurement </li>
+							<li>Estados de una adjudicación</li>
+							<li>Estados de un contrato</li>
+							<li>Monedas. Usa códigos de moneda de ISO-3</li>
+							<li>Estados de hito</li>
+							<li></li>
+						</ul>
+					</p>
+					<aside class="notes">
+						. Todavia estamos trabajando en los códigos.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Herramientas</h1>
+					<h3></h3>
+					<ul style="list-style: none;">
+						<li>JSON <--> CSV : https://github.com/OpenDataServices/flatten-tool</li>
+						<li>JSON <--> CSV : CSVKit</li>
+					</ul>
+					<aside class="notes">
+					</aside>
+				</section>
 
 				<section>
 					<h1>Recomendaciones</h1>
@@ -353,6 +652,8 @@
 					<p>
 					</p>
 					<aside class="notes">
+						. user experience
+						. API design
 					</aside>
 				</section>
 

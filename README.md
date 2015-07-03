@@ -1,18 +1,16 @@
-# Presentation for SRCCON
+# Presentación sobre estandar de datos de contratación abierta y datos abiertos en la ciudad de Mexico
 
-Web: http://srccon.org/
+Web: http://ocds.open-contracting.org
 
-Duration: 60 minutes
-Title:
-Description: “In 2014, La Nacion in Argentina launched VozData, a website to crowdsource senate spendings by asking people to transcribe information from 6000 scanned PDF documents from the senate. This is a talk about the code that created that website and it can be used with any document set and any data you may need to take from them.”
+Duración: 60 minutes
+Titulo: "Estandar de datos abiertos de contratación"
+Description: "Explica y mapea datos del estandar con los datos publicados en diferentes dependencias de CDMX"
 
 
-#### Technology
+#### Technologia
 
-Written based on [reveal.js](http://github.com/hakimel/reveal.js/issues)
+Escrito en [reveal.js](http://github.com/hakimel/reveal.js/issues)
 
 ## License
 
 MIT licensed
-
-Copyright (C) 2014 Gabriela Rodríguez, http://gaba.stayover.org
