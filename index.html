@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Estandar de Datos de Contratación Abiertos en la Ciudad de Mexico</title>
+		<title>Estándar de Datos para las Contrataciones Abiertas en la Ciudad de México</title>
 
-		<meta name="description" content="Vozdata: Open data with the help of the community">
+		<meta name="description" content="Estándar de Datos para las Contrataciones Abiertas">
 		<meta name="author" content="Gabriela Rodríguez">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/ocds.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -43,29 +43,83 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Estandar de Datos Abiertos de Contratación</h1>
-					<h3></h3>
-					<p>
-					</p>
+					<h1>Estándar de Datos para las</h1>
+					<h1>Contrataciones Abiertas</h1>
+				</section>
+
+				<section>
+					<h2>Proceso de contratación</h1>
+						<ul>
+							<li>Planificación</li>
+							<li>Licitación</li>
+							<li>Adjudicación</li>
+							<li>Contrato</li>
+							<li>Implementación</li>
+						</ul>
 					<aside class="notes">
+						. El estandar describe como liberar documentos y datos para todas las etapas del proceso de contratación.
+						. Publicaciones de OCDS contiene:
+						  .. documentos y avisos sobre licitaciones, extensiones, adjudicaciones, contratos
+							.. identificadores de compradores y proveedores
+							.. fechas claves y duración de contratos
+							.. valor de las contrataciones y transacciones
+							.. objecto de las mismas
+						. Para empezar el trabajo de aplicación del estandar
+						  .. mirar lo que ya se tiene y se puede publicar
+							.. enfocarse en los campos principales
+							.. empezar en pequeño y escalar
 					</aside>
 				</section>
 
 				<section>
-					<h1>Overview - TO DO</h1>
-					<h3></h3>
+					<h2>Datos de Contrataciones Abiertas</h2>
+					<h3>posibles casos de uso</h3>
 					<p>
+						. gobierno: busca mejorar el retorno por el dinero invertido
+						. anti-corrupcion: detectar fraude y corrupcion
+						. empresas: competir por contratos publicos
+						. monitorear los servicios ofrecidos
 					</p>
 					<aside class="notes">
-						. overview of the standard
-						. json <--> xls
-						. extensions
+						. porque es importante publicar en formatos accesibles?
 					</aside>
 				</section>
 
 				<section>
-					<h1>Release Package - TO DO</h1>
-					<h3>Archivo con varios releases juntos.</h3>
+					<h2>¿Como se implementa OCDS?</h2>
+					<ul>
+						<li>Publicar información básica en la web.</li>
+						<li>Publicar datos en formatos leibles por máquina.</li>
+						<li>Estructurar datos usando OCDS.</li>
+						<li>Usar buenas practicas para publicar datos abiertos en la web.</li>
+						<li>Enlazar a otros conjuntos de datos.</li>
+					</ul>
+					<aside class="notes">
+						. Compartir documenots para cada etapa del proceso
+						  .. planes de compra
+						  .. llamados a licitacion
+						  .. especificaciones tecnicas
+						  .. aviso de adjudicacion
+						  .. contratos firmados
+						. Procesar los datos para que sean accesibles, buscables, combinables.
+						. Usando el esquema de JSON de OCDS, publicar releases.
+						. Cada publicación tiene su propia URI y es persistente
+					</aside>
+				</section>
+
+				<section>
+				  <h3>Puntos Importantes que resolver</h3>
+					<ul>
+						<li>Campos e identificadores: que publicar y como identificarlos consistentemente.</li>
+						<li>Patrones de Publicación: usabilidad y frecuencia.</li>
+						<li>Formatos de Publicación: esquema JSON, XLS, CSV</li>
+						<li>Entender las necesidades de los usuarios de estos datos y que pueden aportar.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Release Package</h1>
+					<h3>Publicación con varios releases juntos.</h3>
 					<ul>
 						<li>Un release es un archivo de publicación sobre un proceso de contratación.</li>
 						<li>Es deseable que se publique lo más frecuente como sea posible.</li>
@@ -79,12 +133,7 @@
 						. en el caso mexicano
 							. liberar releases una vez por mes
 							. liberar un release package una vez por trimestre
-						. pregunta
-						  . como piensan manejar el API?
-							. y la publicación de archivos json?
-						. API --- LOOK AT THIS MORE FOR RECOMMENDATIONS
-						  . restful
-							. '/release/{release-id}'
+						. pregunta sobre frecuencia de publicación
 					</aside>
 				</section>
 
@@ -151,14 +200,14 @@
 					<h1>Identificadores - TODO</h1>
 					<h3>pegamento del proceso de contratación</h3>
 					<p>
-						OCID es un identificador global que está hecho de cuatro partes. Los primeros tres pueden ser valores fijos en el sistema.
+						OCID es un identificador global único usado en cada 'release' para identificar el proceso de contratación.
+					</p>
+					<p>
+						ocds-{prefijo}-{organismo publicador}-{identificador interno}
 						<ul>
 							<li>Prefijo 'OCDS'</li>
-							<li>Separador '-'</li>
 							<li>Prefijo registrado que para ciudad de mexico es '87sd3t'</li>
-							<li>Separador '-'</li>
-							<li>Un nombre para el organismo que publica. En el caso de secretaria de finanzas podria ser 'SEFIN' o parcido.</li>
-							<li>Separador '-'</li>
+							<li>Un nombre para el organismo que publica.</li>
 							<li>Un identificador interno que se crea en el sistema usado.</li>
 						</ul>
 					</p>
@@ -363,7 +412,7 @@
 					<aside class="notes">
 						. proveedores
 							.. hay un dataset de proveedores para cada dependencia
-							.. el identificador es para el proveedor en un data set único para todo el gobierno. Es importante que sea un identificador legal de un registro de empresas del gobierno. (SEIM?)
+							.. el identificador es para el proveedor en un data set único para todo el gobierno. Es importante que sea un identificador legal de un registro de empresas del gobierno. (tax number (RFC) o SIEM company registry)
 							.. todos los datos que necesitamos estan en el dataset de proveedores. Sólo que no tienen buenos identificadors para atarlos al proceso de contratación.
 							.. si no se puede publicar id de la empresa entonces publicar la mayor cantidad posible de las empresas registradas con la dependencia.
 						. campo servidores publicos en los datos
@@ -638,10 +687,8 @@
 				<section>
 					<h1>Herramientas</h1>
 					<h3></h3>
-					<ul style="list-style: none;">
-						<li>JSON <--> CSV : https://github.com/OpenDataServices/flatten-tool</li>
-						<li>JSON <--> CSV : CSVKit</li>
-					</ul>
+					. herramientas de serializacion (flatten-tools)
+					. CSVKit
 					<aside class="notes">
 					</aside>
 				</section>
@@ -649,11 +696,24 @@
 				<section>
 					<h1>Recomendaciones</h1>
 					<h3></h3>
-					<p>
-					</p>
+					<ul>
+						<li>Usabilidad</li>
+						    .. cuales son las necesidades de los usuarios
+								.. quienes los van a usar, como?
+								.. que necesitamos medir para el exito del proyecto
+						<li>API</li>
+								.. los mecanismos para acceder e interactuar estan documentados
+								.. versiones estáticas y dinamicas de los conjuntos de datos estan sincronizadas
+								.. si hay varios formatos, el servidor debera proveer content negotiation
+								.. especificar la versión del api claramente
+						<li>URI persistentes para cada release y release package</li>
+						<li>Dar un canal para contacto sobre los datos</li>
+						<li>Publicar ejemplos de uso de los datos</li>
+					</ul>
 					<aside class="notes">
-						. user experience
+						. user experience / usabilidad
 						. API design
+						. URI para cada release y persistentes
 					</aside>
 				</section>
 
