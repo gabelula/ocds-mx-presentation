@@ -74,12 +74,12 @@
 				<section>
 					<h2>Datos de Contrataciones Abiertas</h2>
 					<h3>posibles casos de uso</h3>
-					<p>
-						. gobierno: busca mejorar el retorno por el dinero invertido
-						. anti-corrupcion: detectar fraude y corrupcion
-						. empresas: competir por contratos publicos
-						. monitorear los servicios ofrecidos
-					</p>
+					<ul>
+						<li> gobierno: busca mejorar el retorno por el dinero invertido</li>
+						<li> anti-corrupcion: detectar fraude y corrupcion</li>
+						<li> empresas: competir por contratos publicos</li>
+						<li> público: monitorear los servicios ofrecidos</li>
+					</ul>
 					<aside class="notes">
 						. porque es importante publicar en formatos accesibles?
 					</aside>
@@ -124,7 +124,7 @@
 						<li>Un release es un archivo de publicación sobre un proceso de contratación.</li>
 						<li>Es deseable que se publique lo más frecuente como sea posible.</li>
 						<li>Release package es un conjunto de releases.</li>
-						<li>En MX, se puede publicar releases una vez por mes y un release package una vez por trimestre.</li>
+						<li>¿Cómo puede ser la frecuencia en México? Se puede publicar releases una vez por mes y un release package una vez por trimestre.</li>
 					</ul>
 					<aside class="notes">
 						. Un release es un archivo de publicación sobre un proceso de contratación. Puede ser en la etapa de planificación, llamado a licitación, contratación o ejecución.
@@ -197,13 +197,13 @@
 				</section>
 
 				<section>
-					<h1>Identificadores - TODO</h1>
+					<h1>Identificadores</h1>
 					<h3>pegamento del proceso de contratación</h3>
 					<p>
 						OCID es un identificador global único usado en cada 'release' para identificar el proceso de contratación.
 					</p>
 					<p>
-						ocds-{prefijo}-{organismo publicador}-{identificador interno}
+						<b>ocds-{prefijo}-{organismo publicador}-{identificador interno}</b>
 						<ul>
 							<li>Prefijo 'OCDS'</li>
 							<li>Prefijo registrado que para ciudad de mexico es '87sd3t'</li>
@@ -329,23 +329,23 @@
 					<h1>Licitación</h1>
 					<h3></h3>
 					<pre><code>
-  "items": [],
-	"minValue": {
-		"amount": "number, null",
-		"currency": "MXN"
-	},
-  "value": {
-	    "amount": "15232482",
-      "currency": "MXN"},
-	"procurementMethod": "open",
-	"awardCriteria": "lowestCost",
-	"awardCriteriaDetails": "Con fundamento en el articulo 43 fracción II de la LADF...",
-	"submissionMethod": "Como se aplica para la licitación? ElectronicAuction, ElectronicSubmission, Written, inPerson",
-	"submissionMethodDetails": "Detalles de como aplicar",
-	"tenderPeriod": {
-      "startDate": "Fecha en que licitación fue anunciada. Sólo tenemos periodo de aplicación.",
-      "endDate": "Último día para aplicar. Fecha de la Convocatoria o Invitacion"
-  },
+"items": [],
+"minValue": {
+    "amount": "number, null",
+    "currency": "MXN"
+},
+"value": {
+    "amount": "15232482",
+    "currency": "MXN"},
+"procurementMethod": "open",
+"awardCriteria": "lowestCost",
+"awardCriteriaDetails": "Con fundamento en el articulo 43 fracción II de la LADF...",
+"submissionMethod": "Como se aplica para la licitación? ElectronicAuction, ElectronicSubmission, Written, inPerson",
+"submissionMethodDetails": "Detalles de como aplicar",
+"tenderPeriod": {
+    "startDate": "Fecha en que licitación fue anunciada. Sólo tenemos periodo de aplicación.",
+    "endDate": "Último día para aplicar. Fecha de la Convocatoria o Invitacion"
+},
 ...
 					</code></pre>
 					<aside class="notes">
@@ -365,8 +365,8 @@
 					<pre><code>
 ...
     "awardPeriod": {
-        "startDate": "date",
-        "endDate": "date"
+        "startDate": "fecha - periodo de contratación",
+        "endDate": "fecha"
     },
     "numberOfTenderers": 3,
     "tenderers" : []
@@ -387,23 +387,23 @@
 					<pre><code>...
 "tenderers" : [
     {
-          "identifier": "Identificador del proveedor/organización.",
-    	    "additionalIdentifier": "Identificadores adicionales. Por ejemplo, razón social.",
-    	    "name": "P & C LIMPIEZA, S.A. DE C.V.",
-    	    "address": {
-			        "streetAddress": "String, null",
-					    "locality": "String, null",
-					    "region": "String, null",
-					    "postalCode": "String, null",
-					    "countryName": "String, null"
-			    },
-    	    "contactPoint": {
-				        "name": "String, null",
-				        "email": "String, null",
-				        "telephone": "String, null",
-				        "faxNumber": "String, null",
-				        "url": "uri"
-			    }
+        "identifier": "Identificador del proveedor/organización.",
+        "additionalIdentifier": "Identificadores adicionales. Por ejemplo, razón social.",
+        "name": "P & C LIMPIEZA, S.A. DE C.V.",
+        "address": {
+            "streetAddress": "String, null",
+            "locality": "String, null",
+            "region": "String, null",
+            "postalCode": "String, null",
+            "countryName": "String, null"
+        },
+        "contactPoint": {
+            "name": "String, null",
+            "email": "String, null",
+            "telephone": "String, null",
+            "faxNumber": "String, null",
+            "url": "uri"
+        }
     },
     ...
 ],
@@ -426,16 +426,32 @@
 					<h3></h3>
 					<pre><code>...
     "procuringEntity": {
-    		"name": "Unidad Administrativa Responsable de la ejecucion (Dirección General de Informática)"
+			  "identifier": "identificador de dependencias",
+				"additionalIdentifier": "",
+    		"name": "Unidad Administrativa Responsable de la ejecucion (Dirección General de Informática)",
+				"address": {},
+				"contactPoint": {}
     	},
-    "documents": "Documentos relacionados. Array[Documento]",
+    "documents": [
+		    {
+					"id": "Identificador único para el documento."
+					"documentType": "notice"
+					"title": "Convocatorias de Licitación y Fallos."
+					"description": ""
+					"url": "http://www.consejeria.df.gob.mx/images/transparencia/1er_trimestre_2015/art_14/frac_XXVII/convocatoria_LPN_1.pdf",
+					"datePublished": "Fecha",
+					"dateModified": "Fecha",
+					"format": "pdf",
+					"language": "es"
+				}
+		],
     "milestones": [ "Hitos asociados con el llamado a licitación." ],
     "amendment": "Modificaciones a la licitación."
 }
 					</code></pre>
 					<aside class="notes">
-						. use a different scheme for gov organizations (identifiers are different)
-						. only documents related with the tender
+						. usar un diferente esquema para organizaciones del gobierno y proveedores (identificadores son diferentes)
+						. sólo documentos relacionados a la licitaciones
 						. FIELDS FOR AMENDMENTS AND EXAMLE OF MX DATA THAT HAVE IT
 					</aside>
 				</section>
@@ -528,28 +544,28 @@
 					<h3>awards</h3>
 					<pre><code>
 "awards": [
-        ...,
-		    "items": [] ,
-		    "documents": [
-		        {
-		            "id": "1",
-		            "documentType": "notice" ,
-		            "title": "Licitación Publica Nacional. Numero LPN/GDF/CJSL/DEA/SRM/01/15 'Servicio de Limpieza'. Acto de Fallo",
-		            "description": null,
-		            "url": "http://www.consejeria.df.gob.mx/images/transparencia/1er_trimestre_2015/art_14/frac_XXVII/LPN_01_acta_fallo.pdf",
-		            "datePublished": "",
-		            "dateModified": "",
-		            "format": "PDF",
-		            "language": "es"
-		       }
-		    ],
-		    "amendment": {
-						    "date": "Fecha del cambio",
-                "changes": [
-								    "property": "Campo que cambio",
-										"former_value": "Valor anterior"
-								],
-                "rationale": "Motivo del cambio."
+    ...,
+    "items": [] ,
+    "documents": [
+        {
+        "id": "1",
+        "documentType": "notice" ,
+        "title": "Licitación Publica Nacional. Numero LPN/GDF/CJSL/DEA/SRM/01/15 'Servicio de Limpieza'. Acto de Fallo",
+        "description": null,
+        "url": "http://www.consejeria.df.gob.mx/images/transparencia/1er_trimestre_2015/art_14/frac_XXVII/LPN_01_acta_fallo.pdf",
+        "datePublished": "",
+        "dateModified": "",
+        "format": "PDF",
+        "language": "es"
+        }
+    ],
+    "amendment": {
+        "date": "Fecha del cambio",
+        "changes": [
+            "property": "Campo que cambio",
+            "former_value": "Valor anterior"
+        ],
+        "rationale": "Motivo del cambio."
 				}
     }
 ]
@@ -665,18 +681,26 @@
 							<li>Metodos de aplicación a un llamado de licitación</li>
 						</ul>
 					</p>
+					<aside class="notes">
+						. Todavia estamos trabajando en los códigos.
+					</aside>
+				</section>
+
+
+				<section>
+					<h1>Listas de Códigos</h1>
+					<h3>abiertas y cerradas</h3>
 					<p>
 						Listá de códigos cerrada: son códigos que obligatoriamente no se pueden cambiar.
 						<ul>
 							<li>Tags para Release</li>
 							<li>Tipo de iniciación de un proceso de contratación</li>
 							<li>Estado de la licitación</li>
-							<li>Metodos de procurement </li>
+							<li>Métodos de procurement </li>
 							<li>Estados de una adjudicación</li>
 							<li>Estados de un contrato</li>
 							<li>Monedas. Usa códigos de moneda de ISO-3</li>
-							<li>Estados de hito</li>
-							<li></li>
+							<li>Estados de un hito</li>
 						</ul>
 					</p>
 					<aside class="notes">
@@ -684,12 +708,32 @@
 					</aside>
 				</section>
 
-				<section>
+<!--				<section>
 					<h1>Herramientas</h1>
-					<h3></h3>
-					. herramientas de serializacion (flatten-tools)
-					. CSVKit
+					<ul>
+					<li>herramientas de serializacion (flatten-tools)</li>
+					<li>CSVKit</li>
+				  </ul>
 					<aside class="notes">
+					</aside>
+				</section>
+-->
+				<section>
+					<h1>Recomendaciones</h1>
+					<h3></h3>
+					<ul>
+						<li>Usabilidad
+							<ul>
+						    <li>cuales son las necesidades de los usuarios</li>
+								<li>quienes van a usar los datos y la plataforma, cómo?</li>
+								<li>qué necesitamos medir para el éxito del proyecto</li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes">
+						. user experience / usabilidad
+						. API design
+						. URI para cada release y persistentes
 					</aside>
 				</section>
 
@@ -697,15 +741,26 @@
 					<h1>Recomendaciones</h1>
 					<h3></h3>
 					<ul>
-						<li>Usabilidad</li>
-						    .. cuales son las necesidades de los usuarios
-								.. quienes los van a usar, como?
-								.. que necesitamos medir para el exito del proyecto
-						<li>API</li>
-								.. los mecanismos para acceder e interactuar estan documentados
-								.. versiones estáticas y dinamicas de los conjuntos de datos estan sincronizadas
-								.. si hay varios formatos, el servidor debera proveer content negotiation
-								.. especificar la versión del api claramente
+						<li>API
+							<ul>
+								<li>los mecánismos para acceder e interactuar estan documentados</li>
+								<li>versiones estáticas y dinamicas de los conjuntos de datos estan sincronizadas</li>
+								<li>si hay varios formatos, el servidor debera proveer content negotiation</li>
+								<li>especificar la versión del api claramente</li>
+							</ul>
+							</li>
+					</ul>
+					<aside class="notes">
+						. user experience / usabilidad
+						. API design
+						. URI para cada release y persistentes
+					</aside>
+				</section>
+
+				<section>
+					<h1>Recomendaciones</h1>
+					<h3></h3>
+					<ul>
 						<li>URI persistentes para cada release y release package</li>
 						<li>Dar un canal para contacto sobre los datos</li>
 						<li>Publicar ejemplos de uso de los datos</li>
@@ -718,7 +773,7 @@
 				</section>
 
 				<section>
-					<h2>Preguntas & Comentarios</h2>
+					<h2>Más Preguntas & Comentarios</h2>
 					<p>
 					</p>
 				</section>
